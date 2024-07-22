@@ -1,62 +1,86 @@
-# labseq_service
+# Labseq Application
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## Overview
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+The Labseq application is a full-stack project consisting of a backend service and a frontend user interface. The backend is implemented using Quarkus (Java), and the frontend is developed using Angular.
 
-## Running the application in dev mode
+### Backend
 
-You can run your application in dev mode that enables live coding using:
+The backend service provides an endpoint to compute and retrieve values from the Labseq sequence, which is a sequence defined by a recursive relation. It uses caching to optimize performance.
 
-```shell script
-./mvnw compile quarkus:dev
-```
+### Frontend
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+The frontend is a simple Angular application that allows users to input a number and retrieve the corresponding Labseq value from the backend. It features error handling and a user-friendly interface.
 
-## Packaging and running the application
+## Running Locally
+Download project
+### BackEnd
 
-The application can be packaged using:
+1. **Navigate to the backend directory (labseq)**:
+   ```bash
+   cd path/to/labseq
+   ./mvnw quarkus:dev
 
-```shell script
-./mvnw package
-```
+This command starts the Quarkus application in development mode. The service will be available at http://localhost:8080.
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+### FrontEnd
+1. **Navigate to the backend directory (labseq/labseq_ui)**:
+    ```bash
+   cd path/to/labseq/labseq-ui
+   npm install      (to install dependencies)
+   ng serve
 
-If you want to build an _über-jar_, execute the following command:
+This command starts the Angular development server. The application will be available at http://localhost:4200.
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+## Running with Docker
+### Building Docker Images
+1. **Navigate to the root directory.**
+2. **Build the Docker image for the backend:** 
+    ```bash
+    docker build -f src/main/docker/Dockerfile.jvm -t quarkus/labseq_service-jvm .
+3. **Build the Docker image for the frontend:**
+    ```bash
+    docker build -t angular-labseq-ui .  
+4. **Build the Docker image for the backend:**
+    ```bash
+     docker run -i --rm -p 8080:8080 quarkus/labseq_service-jvm
+This command starts the backend service in a Docker container and maps port 8080 on your host to port 8080 in the container.
+5. **Build the Docker image for the frontend:**
+    ```bash
+   docker run -d -p 4200:80 angular-labseq-ui         
+This command starts the frontend application in a Docker container and maps port 4200 on your host to port 80 in the container.
 
-## Creating a native executable
+## Accessing the Application
+ Frontend: Open your browser and go to http://localhost:4200.
 
-You can create a native executable using:
+ Backend: The API is available at http://localhost:8080/labseq/{n}, where {n} is the index of the Labseq sequence.
 
-```shell script
-./mvnw package -Dnative
-```
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+## Overview
 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
+The Labseq application is a full-stack project consisting of a backend service and a frontend user interface. The backend is implemented using Quarkus (Java), and the frontend is developed using Angular.
 
-You can then execute your native executable with: `./target/labseq_service-1.0-SNAPSHOT-runner`
+### Backend
 
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
+The backend service provides an endpoint to compute and retrieve values from the Labseq sequence, which is defined by a recursive relation. It uses caching to optimize performance and follows the REST architecture for API interaction.
 
-## Provided Code
+### Frontend
 
-### REST
+The frontend is a simple Angular application that allows users to input a number and retrieve the corresponding Labseq value from the backend. It features error handling to ensure users receive appropriate feedback.
 
-Easily start your REST Web Services
+## Project Structure
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+### Backend
+
+- **`src/main/java/com/example/resource/LabseqResource.java`**: Defines the REST endpoint for retrieving Labseq values.
+- **`src/main/java/com/example/service/LabseqService.java`**: Contains the business logic for computing Labseq values and caching them.
+- **`Dockerfile`**: Contains instructions to build the Docker image for the backend.
+
+### Frontend
+
+- **`src/app/labseq/labseq.component.ts`**: Contains the logic for fetching Labseq values from the backend and handling user input.
+- **`src/app/labseq/labseq.component.html`**: Provides the HTML template for user interaction.
+- **`src/app/labseq/labseq.component.css`**: Contains styles for the Labseq component.
+- **`Dockerfile`**: Contains instructions to build the Docker image for the frontend.
