@@ -46,11 +46,14 @@ This command starts the Angular development server. The application will be avai
 4. **Build the Docker image for the backend:**
     ```bash
      docker run -i --rm -p 8080:8080 quarkus/labseq_service-jvm
-This command starts the backend service in a Docker container and maps port 8080 on your host to port 8080 in the container.
 5. **Build the Docker image for the frontend:**
     ```bash
+   cd labseq-ui
    docker run -d -p 4200:80 angular-labseq-ui         
-This command starts the frontend application in a Docker container and maps port 4200 on your host to port 80 in the container.
+
+The backend command starts the backend service in a Docker container and maps port 8080 on your host to port 8080 in the container.
+
+The frontend command starts the frontend application in a Docker container and maps port 4200 on your host to port 80 in the container.
 
 ## Accessing the Application
  Frontend: Open your browser and go to http://localhost:4200.
