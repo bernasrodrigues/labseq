@@ -44,6 +44,9 @@ nb-configuration.xml
 
 # Project exclude paths
 /labseq-ui/dist/
+/labseq-ui/.angular
+/labseq-ui/.vscode
+/labseq-ui/node_modules
 
 
 
