@@ -47,6 +47,10 @@ nb-configuration.xml
 /labseq-ui/.angular
 /labseq-ui/.vscode
 /labseq-ui/node_modules
+\labseq-ui\dist\
+\labseq-ui\.angular
+\labseq-ui\.vscode
+\labseq-ui\node_modules
 
 
 

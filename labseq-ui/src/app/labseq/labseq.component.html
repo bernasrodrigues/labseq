@@ -1,0 +1,20 @@
+<div>
+  <h1>Labseq Sequence Calculator</h1>
+
+  <!-- Input field for user to enter a number -->
+  <input
+    type="number"
+    [(ngModel)]="inputNumber"
+    placeholder="Enter a number"
+    step="1"
+  />
+
+  <!-- Button to fetch the sequence value -->
+  <button (click)="getSequenceValue()">Get Sequence Value</button>
+
+  <!-- Display error message if any -->
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+  <!-- Display the result -->
+  <p *ngIf="sequenceValue !== null">Sequence Value: {{ sequenceValue }}</p>
+</div>
