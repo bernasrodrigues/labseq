@@ -6,11 +6,11 @@ The Labseq application is a full-stack project consisting of a backend service a
 
 ### Backend
 
-The backend service provides an endpoint to compute and retrieve values from the Labseq sequence, which is a sequence defined by a recursive relation. It uses caching to optimize performance.
+The backend service provides an endpoint to compute and retrieve values from the Labseq sequence, which is defined by a recursive relation. It uses caching to optimize performance and follows the REST architecture for API interaction.
 
 ### Frontend
 
-The frontend is a simple Angular application that allows users to input a number and retrieve the corresponding Labseq value from the backend. It features error handling and a user-friendly interface.
+The frontend is a simple Angular application that allows users to input a number and retrieve the corresponding Labseq value from the backend. It features error handling to ensure users receive appropriate feedback.
 
 ## Running Locally
 Download project
@@ -57,18 +57,6 @@ This command starts the frontend application in a Docker container and maps port
 
  Backend: The API is available at http://localhost:8080/labseq/{n}, where {n} is the index of the Labseq sequence.
 
-
-## Overview
-
-The Labseq application is a full-stack project consisting of a backend service and a frontend user interface. The backend is implemented using Quarkus (Java), and the frontend is developed using Angular.
-
-### Backend
-
-The backend service provides an endpoint to compute and retrieve values from the Labseq sequence, which is defined by a recursive relation. It uses caching to optimize performance and follows the REST architecture for API interaction.
-
-### Frontend
-
-The frontend is a simple Angular application that allows users to input a number and retrieve the corresponding Labseq value from the backend. It features error handling to ensure users receive appropriate feedback.
 
 ## Project Structure
 
