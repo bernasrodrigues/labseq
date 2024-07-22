@@ -33,6 +33,12 @@ public class LabseqResource {
     @Inject
     LabseqService labseqService;
 
+    /**
+     * Endpoint to get the Labseq value for a given index.
+     *
+     * @param n The index of the Labseq sequence.
+     * @return The Labseq value at index n.
+     */
     @GET
     @Path("/{n}")
     @Operation(
@@ -60,6 +66,7 @@ public class LabseqResource {
     })
     @Parameter(name = "n", description = "Index in the LabSeq sequence to retrieve the value for.", required = true, example = "20")
     public Response getLabseq(@PathParam("n") String n) {
+        // Call the service to get the Labseq value
         try {
             int index = Integer.parseInt(n);
             if (index < 0) {
